@@ -1,0 +1,11 @@
+setwd("C:/Users/Debanjan/Desktop/Coursera")
+fulldata <- read.csv("household_power_consumption.txt", head=TRUE, sep=";", na.strings="?")
+Date <- as.Date(fulldata$Date, "%d/%m/%Y")
+data <- cbind(Date, fulldata)
+data <- data[,-2]
+data201 <- subset(data, Date == "2007-02-01")
+data202 <- subset(data, Date == "2007-02-02")
+finaldata <- rbind(data201, data202)
+png("plot1.png", width=480, height=480, units="px")
+hist(finaldata$Global_active_power, col="red", main="Global Active Power", xlab="Global Active Power (kilowatts)")
+dev.off()
